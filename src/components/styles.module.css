@@ -1,6 +1,8 @@
 /* Базовые стили */
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -20,7 +22,9 @@ img {
 
 .title {
     text-align: center;
-    padding: 30px 0;
+    font-family: 'Satisfy', cursive;
+    font-size: 35px;
+    padding: 30px 0 20px;
 }
 
 .container {
@@ -54,6 +58,7 @@ img {
 .noteList {
     display: flex;
     flex-wrap: wrap;
+    padding: 20px 0;
 }
 
 /* Стили компонента noteItem */
@@ -67,9 +72,14 @@ img {
         0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     margin: 10px;
     padding: 10px;
-    width: 150px;
+    min-width: 150px;
     min-height: 80px;
+    max-width: 300px;
     background: red;
+}
+
+.text {
+    padding: 10px;
 }
 
 /* Стили кнопки Load more */
@@ -97,10 +107,18 @@ img {
 .button:hover,
 .button:focus {
     background-color: #1f65d6;
+    outline: none;
+}
+
+.delButton {
+    composes: button;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 5px 10px;
+    min-width: 50px;
 }
 
 .marker {
-    color: #1f65d6;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -108,17 +126,26 @@ img {
     background-color: currentColor;
     margin-right: 2px;
     outline: none;
+    position: relative;
 }
 
-.marker:active {
-    transform: translateY(2px);
-    filter: saturate(150%);
+.marker:active::after {
+    content: '\2714';
+    color: black;
+    font-size: 16px;
+    position: absolute;
+    left: 3px;
+    top: -2px;
 }
 
-.marker:hover,
-.marker:focus {
-    border: 2px solid currentColor;
-    background-color: white;
+.marker:hover::after,
+.marker:focus::after {
+    content: '\2714';
+    color: black;
+    font-size: 16px;
+    position: absolute;
+    left: 3px;
+    top: -2px;
 }
 
 .button:hover,
@@ -128,8 +155,8 @@ img {
 
 .form {
     position: relative;
-    width: 400px;
-    height: 150px;
+    width: 500px;
+    height: 200px;
     margin: 0 auto;
 }
 

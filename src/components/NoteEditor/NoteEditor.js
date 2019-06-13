@@ -1,10 +1,13 @@
-/* eslint-disable */
 import React, { Component } from 'react';
-// import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import styles from '../styles.module.css';
 import markers from '../markers.json';
 
 class NoteEditor extends Component {
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+    };
+
     state = {
         value: '',
         color: '',
@@ -17,8 +20,10 @@ class NoteEditor extends Component {
     onSubmit = e => {
         const { value, color } = this.state;
         e.preventDefault();
-        this.props.onSubmit(value, color);
-        this.setState({ value: '', color: '' });
+        if (value) {
+            this.props.onSubmit(value, color);
+            this.setState({ value: '', color: '' });
+        }
     };
 
     render() {
@@ -40,6 +45,10 @@ class NoteEditor extends Component {
                                 id={marker}
                                 key={marker}
                                 className={styles.marker}
+                                style={{
+                                    backgroundColor: marker,
+                                    color: marker,
+                                }}
                             ></button>
                         );
                     })}
